@@ -58,31 +58,25 @@ void Enounter::battle()
 		}
 
 		//enemy attack phase might add a do nothing option and random number check
-		else if (playerHP != 0)
+		hit = rand() % 4 + 1;
+		if (hit > 1 && enemyHP > 0)
 		{
-			hit = rand() % 4 + 1;
-			if (hit > 1 && enemyHP > 0)
-			{
 				cout << enemyName + " starts to attack!\n";
 				damage = rand() % enemyAttack + 1;
 				cout << enemyName + " deals " + to_string(damage) + " damage to " + playerName + "\n";
 				playerHP = playerHP - damage;
-			}
-			else if (hit == 1)
-			{
+		}
+		else if (hit == 1)
+		{
 				cout << enemyName + " misses!\n";
 
-			}
-			else
-			{
-				cout << enemyName + " has been slain!!\n\n";
-				PlaySound(NULL, 0, 0); //when you want it to stop
-			}
 		}
 		else
 		{
-			
+			cout << enemyName + " has been slain!!\n\n";
+			PlaySound(NULL, 0, 0); //when you want it to stop
 		}
+		
 	} while (enemyHP > 0 && playerHP > 0);
 
 }
